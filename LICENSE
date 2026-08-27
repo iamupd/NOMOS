@@ -1,0 +1,41 @@
+NOMOS Artifacts — Licensing
+===========================
+
+This package contains two kinds of material under two licenses.
+
+1. DATA AND DOCUMENTS
+   Applies to: policies/, rules/, logs/, results/, and all .json / .jsonl /
+   .csv / .md files describing rule sets, policies, reports, block logs, and
+   results.
+   License: Creative Commons Attribution 4.0 International (CC BY 4.0).
+   You may share and adapt this material for any purpose, provided you give
+   appropriate credit to the paper "NOMOS: Statically Verified Policy Gates for
+   Tool-Using LLM Agents" (Yu, Kim, and Choi).
+   Full text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+2. ANALYSIS SCRIPTS
+   Applies to: scripts/*.py
+   License: MIT License.
+
+   Copyright (c) 2026 Corners Co., Ltd.
+
+   Permission is hereby granted, free of charge, to any person obtaining a copy
+   of this software and associated documentation files (the "Software"), to deal
+   in the Software without restriction, including without limitation the rights
+   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+   copies of the Software, and to permit persons to whom the Software is
+   furnished to do so, subject to the following conditions:
+
+   The above copyright notice and this permission notice shall be included in
+   all copies or substantial portions of the Software.
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+   SOFTWARE.
+
+The proprietary compiler (including its LLM extraction prompt) and the runtime
+gate implementation are NOT included in this package and are NOT licensed here.

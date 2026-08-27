@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use these artifacts, please cite the paper below."
+title: "NOMOS Artifacts: Reproduction package for statically verified policy gates for tool-using LLM agents"
+authors:
+  - family-names: Yu
+    given-names: Minyoung
+    orcid: "https://orcid.org/0009-0007-2325-1469"
+    affiliation: "Corners Co., Ltd."
+  - family-names: Kim
+    given-names: Tony
+    affiliation: "Corners Co., Ltd."
+  - family-names: Choi
+    given-names: James
+    affiliation: "Corners Co., Ltd."
+license: CC-BY-4.0
+preferred-citation:
+  type: article
+  title: "NOMOS: Statically Verified Policy Gates for Tool-Using LLM Agents"
+  authors:
+    - family-names: Yu
+      given-names: Minyoung
+    - family-names: Kim
+      given-names: Tony
+    - family-names: Choi
+      given-names: James
+  journal: "IEEE Access"
+  year: 2026

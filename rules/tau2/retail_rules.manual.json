@@ -1,0 +1,126 @@
+{
+  "domain": "retail",
+  "note": "Rules derived by hand from the retail agent policy; reference set for evaluating compiler-generated rules. Each entry cites the policy clause it enforces.",
+  "rules": [
+    {
+      "id": "RET-PRE-01",
+      "type": "precondition",
+      "tools": [
+        "cancel_pending_order",
+        "modify_pending_order_address",
+        "modify_pending_order_items",
+        "modify_pending_order_payment",
+        "return_delivered_order_items",
+        "exchange_delivered_order_items",
+        "modify_user_address"
+      ],
+      "predicate": "user_confirmed",
+      "policy_clause": "Before taking any action that updates the database (cancel, modify, return, exchange), you must list the action details and obtain explicit user confirmation (yes) to proceed.",
+      "reason": "Policy requires explicit user confirmation before any action that updates the database. List the action details and ask the user to confirm with 'yes' before calling this tool."
+    },
+    {
+      "id": "RET-FBD-01",
+      "type": "forbidden",
+      "tools": [
+        "cancel_pending_order",
+        "modify_pending_order_address",
+        "modify_pending_order_items",
+        "modify_pending_order_payment",
+        "return_delivered_order_items",
+        "exchange_delivered_order_items",
+        "modify_user_address",
+        "get_order_details"
+      ],
+      "predicate": "user_not_authenticated",
+      "policy_clause": "At the beginning of the conversation, you have to authenticate the user identity by locating their user id via email, or via name + zip code. This has to be done even when the user already provides the user id.",
+      "reason": "The user has not been authenticated yet. Locate their user id with find_user_id_by_email or find_user_id_by_name_zip before doing anything else."
+    },
+    {
+      "id": "RET-PRE-02",
+      "type": "precondition",
+      "tools": [
+        "cancel_pending_order",
+        "modify_pending_order_address",
+        "modify_pending_order_items",
+        "modify_pending_order_payment",
+        "return_delivered_order_items",
+        "exchange_delivered_order_items"
+      ],
+      "predicate": "order_known",
+      "policy_clause": "An order can only be cancelled if its status is 'pending', and you should check its status before taking the action.",
+      "reason": "The order has not been retrieved yet. Call get_order_details for this order id and check its status before acting on it."
+    },
+    {
+      "id": "RET-FBD-02",
+      "type": "forbidden",
+      "tools": [
+        "cancel_pending_order",
+        "modify_pending_order_address",
+        "modify_pending_order_items",
+        "modify_pending_order_payment"
+      ],
+      "predicate": "order_not_pending",
+      "policy_clause": "An order can only be cancelled if its status is 'pending'. An order can only be modified if its status is 'pending'.",
+      "reason": "This order is not pending, so it cannot be cancelled or modified. Tell the user its actual status instead."
+    },
+    {
+      "id": "RET-FBD-03",
+      "type": "forbidden",
+      "tools": [
+        "return_delivered_order_items",
+        "exchange_delivered_order_items"
+      ],
+      "predicate": "order_not_delivered",
+      "policy_clause": "An order can only be returned if its status is 'delivered'. An order can only be exchanged if its status is 'delivered'.",
+      "reason": "This order is not delivered, so it cannot be returned or exchanged. Tell the user its actual status instead."
+    },
+    {
+      "id": "RET-FBD-04",
+      "type": "forbidden",
+      "tools": [
+        "cancel_pending_order"
+      ],
+      "predicate": "cancel_reason_invalid",
+      "policy_clause": "The user needs to confirm the order id and the reason (either 'no longer needed' or 'ordered by mistake') for cancellation. Other reasons are not acceptable.",
+      "reason": "The cancellation reason must be exactly 'no longer needed' or 'ordered by mistake'. Ask the user which of the two applies."
+    },
+    {
+      "id": "RET-FBD-05",
+      "type": "forbidden",
+      "tools": [
+        "cancel_pending_order",
+        "modify_pending_order_address",
+        "modify_pending_order_items",
+        "modify_pending_order_payment",
+        "return_delivered_order_items",
+        "exchange_delivered_order_items"
+      ],
+      "predicate": "order_belongs_to_other_user",
+      "policy_clause": "You can only help one user per conversation and must deny any requests for tasks related to any other user.",
+      "reason": "This order belongs to a different user than the authenticated one. Deny the request."
+    },
+    {
+      "id": "RET-FBD-06",
+      "type": "forbidden",
+      "tools": [
+        "modify_pending_order_payment",
+        "return_delivered_order_items",
+        "exchange_delivered_order_items"
+      ],
+      "predicate": "payment_method_not_on_profile",
+      "policy_clause": "The refund must either go to the original payment method, or an existing gift card. The user must provide a payment method to pay or receive refund of the price difference.",
+      "reason": "The payment method is not saved on the authenticated user's profile. Only methods already on the profile may be used."
+    },
+    {
+      "id": "RET-FBD-07",
+      "type": "forbidden",
+      "tools": [
+        "exchange_delivered_order_items",
+        "modify_pending_order_items"
+      ],
+      "predicate": "item_count_mismatch",
+      "policy_clause": "Each item can be exchanged to an available new item of the same product but of different product option.",
+      "reason": "Each item being changed needs exactly one replacement item. The two item lists have different lengths."
+    }
+  ]
+}

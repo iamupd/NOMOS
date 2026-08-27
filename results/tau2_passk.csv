@@ -1,0 +1,12 @@
+domain,rule_source,k,undefended_pass_k,gate_pass_k,delta_points,ci_low,ci_high,significant
+airline,auto,1,39.3,47.7,8.4,-1.1,17.9,no
+airline,auto,2,27.4,40.6,13.2,2.6,24.0,yes
+airline,auto,3,23.0,37.0,14.0,2.6,25.4,yes
+airline,auto,4,21.2,34.4,13.2,0.8,25.6,yes
+airline,auto,5,20.4,32.7,12.2,,,
+retail,auto,1,52.6,50.4,-2.3,-7.9,3.4,no
+retail,auto,4,25.0,23.2,-1.8,-10.9,5.5,no
+airline,manual,1,39.3,42.8,3.5,,,
+airline,frontier,1,39.3,46.4,7.1,,,
+airline,auto,1_violation_rate,13.1,0.2,,,,independent checker
+retail,auto,1_violation_rate,5.0,0.6,,,,independent checker

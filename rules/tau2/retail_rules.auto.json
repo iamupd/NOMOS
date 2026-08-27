@@ -1,0 +1,82 @@
+{
+  "domain": "retail",
+  "extraction_samples": 5,
+  "note": "Rules extracted automatically from the policy document. Compare against the hand-written reference set.",
+  "rules": [
+    {
+      "id": "RET-AUTO-FBD-01",
+      "type": "forbidden",
+      "tools": [
+        "exchange_delivered_order_items",
+        "modify_pending_order_items"
+      ],
+      "predicate": "item_count_mismatch",
+      "policy_clause": "Be sure that all items to be changed are collected into a list before making the tool call!!!",
+      "reason": "",
+      "source_section": "Retail agent policy > Generic action rules"
+    },
+    {
+      "id": "RET-AUTO-FBD-02",
+      "type": "forbidden",
+      "tools": [
+        "exchange_delivered_order_items",
+        "return_delivered_order_items"
+      ],
+      "predicate": "order_not_delivered",
+      "policy_clause": "An order can only be returned if its status is 'delivered'",
+      "reason": "The order must be in 'delivered' status to process a return.",
+      "source_section": "Retail agent policy > Return delivered order"
+    },
+    {
+      "id": "RET-AUTO-FBD-03",
+      "type": "forbidden",
+      "tools": [
+        "cancel_pending_order",
+        "modify_pending_order_address",
+        "modify_pending_order_items",
+        "modify_pending_order_payment"
+      ],
+      "predicate": "order_not_pending",
+      "policy_clause": "Generally, you can only take action on pending or delivered orders.",
+      "reason": "The order must be in a pending or delivered state to perform this action.",
+      "source_section": "Retail agent policy > Generic action rules"
+    },
+    {
+      "id": "RET-AUTO-FBD-04",
+      "type": "forbidden",
+      "tools": [
+        "cancel_pending_order",
+        "exchange_delivered_order_items",
+        "get_order_details",
+        "get_product_details",
+        "get_user_details",
+        "modify_pending_order_address",
+        "modify_pending_order_items",
+        "modify_pending_order_payment",
+        "modify_user_address",
+        "return_delivered_order_items"
+      ],
+      "predicate": "user_not_authenticated",
+      "policy_clause": "At the beginning of the conversation, you have to authenticate the user identity by locating their user id via email, or via name + zip code.",
+      "reason": "The user identity must be authenticated via email or name/zip before any other actions can be taken.",
+      "source_section": "Retail agent policy"
+    },
+    {
+      "id": "RET-AUTO-PRE-05",
+      "type": "precondition",
+      "tools": [
+        "cancel_pending_order",
+        "exchange_delivered_order_items",
+        "modify_pending_order_address",
+        "modify_pending_order_items",
+        "modify_pending_order_payment",
+        "return_delivered_order_items"
+      ],
+      "predicate": "user_confirmed",
+      "policy_clause": "Before taking any action that updates the database (cancel, modify, return, exchange), you must list the action details and obtain explicit user confirmation (yes) to proceed.",
+      "reason": "You must obtain explicit user confirmation before updating the database.",
+      "source_section": "Retail agent policy"
+    }
+  ],
+  "domain_now": "2024-05-15T15:00:00"
+}

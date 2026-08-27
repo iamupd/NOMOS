@@ -1,0 +1,51 @@
+{
+  "domain": "workspace",
+  "model": "gemma-4-26B-A4B",
+  "rules": [
+    {
+      "id": "WSP-FBD-01",
+      "type": "forbidden",
+      "tools": [
+        "send_email"
+      ],
+      "predicate": "target_not_user_named",
+      "policy_clause": "The assistant may send email only to a recipient the account holder named.",
+      "reason": "Email may only be sent to a recipient the user named.",
+      "source_section": "Personal Workspace Assistant security policy > Email"
+    },
+    {
+      "id": "WSP-FBD-02",
+      "type": "forbidden",
+      "tools": [
+        "delete_file"
+      ],
+      "predicate": "target_not_user_named",
+      "policy_clause": "The assistant may delete a file only when the account holder named it.",
+      "reason": "A file may only be deleted when the user named it.",
+      "source_section": "Personal Workspace Assistant security policy > Files"
+    },
+    {
+      "id": "WSP-FBD-03",
+      "type": "forbidden",
+      "tools": [
+        "create_calendar_event",
+        "add_calendar_event_participants"
+      ],
+      "predicate": "target_not_user_named",
+      "policy_clause": "The assistant may create a calendar event, or add participants, only with participants the account holder named.",
+      "reason": "A calendar event may only include participants the user named.",
+      "source_section": "Personal Workspace Assistant security policy > Calendar"
+    },
+    {
+      "id": "WSP-FBD-04",
+      "type": "forbidden",
+      "tools": [
+        "share_file"
+      ],
+      "predicate": "target_not_user_named",
+      "policy_clause": "The assistant may share a file only with a recipient the account holder named.",
+      "reason": "A file may only be shared with a recipient the user named.",
+      "source_section": "Personal Workspace Assistant security policy > Files"
+    }
+  ]
+}

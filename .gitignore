@@ -1,0 +1,12 @@
+# Never commit proprietary source or raw data, even if copied in by mistake.
+compiler.py
+gate.py
+nomos_compiler.py
+nomos_gate.py
+pipeline_element.py
+*extraction*prompt*
+*_prompt.txt
+transcripts/
+simulations/
+**/results.json
+*.env

@@ -1,0 +1,122 @@
+{
+  "domain": "retail",
+  "extraction_samples": 5,
+  "note": "Rules extracted automatically from the policy document. Compare against the hand-written reference set.",
+  "rules": [
+    {
+      "id": "RET-AUTO-FBD-01",
+      "type": "forbidden",
+      "tools": [
+        "cancel_pending_order"
+      ],
+      "predicate": "cancel_reason_invalid",
+      "policy_clause": "Other reasons are not acceptable.",
+      "reason": "Cancellation reason must be either 'no longer needed' or 'ordered by mistake'.",
+      "source_section": "Retail agent policy > Cancel pending order"
+    },
+    {
+      "id": "RET-AUTO-FBD-02",
+      "type": "forbidden",
+      "tools": [
+        "exchange_delivered_order_items"
+      ],
+      "predicate": "item_count_mismatch",
+      "policy_clause": "For a delivered order, each item can be exchanged to an available new item of the same product but of different product option.",
+      "reason": "The list of items to exchange and the list of replacement items must match one-to-one.",
+      "source_section": "Retail agent policy > Exchange delivered order"
+    },
+    {
+      "id": "RET-AUTO-FBD-03",
+      "type": "forbidden",
+      "tools": [
+        "exchange_delivered_order_items",
+        "return_delivered_order_items"
+      ],
+      "predicate": "order_not_delivered",
+      "policy_clause": "An order can only be returned if its status is 'delivered', and you should check its status before taking the action.",
+      "reason": "This order is not in 'delivered' status, so it cannot be returned.",
+      "source_section": "Retail agent policy > Return delivered order"
+    },
+    {
+      "id": "RET-AUTO-FBD-04",
+      "type": "forbidden",
+      "tools": [
+        "cancel_pending_order",
+        "modify_pending_order_address",
+        "modify_pending_order_items",
+        "modify_pending_order_payment"
+      ],
+      "predicate": "order_not_pending",
+      "policy_clause": "An order can only be cancelled if its status is 'pending', and you should check its status before taking the action.",
+      "reason": "Only orders with status 'pending' can be cancelled.",
+      "source_section": "Retail agent policy > Cancel pending order"
+    },
+    {
+      "id": "RET-AUTO-FBD-05",
+      "type": "forbidden",
+      "tools": [
+        "exchange_delivered_order_items",
+        "modify_pending_order_payment",
+        "return_delivered_order_items"
+      ],
+      "predicate": "payment_method_not_on_profile",
+      "policy_clause": "The user can only choose a single payment method different from the original payment method.",
+      "reason": "The new payment method must be different from the original and must be a payment method saved on the user's profile.",
+      "source_section": "Retail agent policy > Modify pending order > Modify payment"
+    },
+    {
+      "id": "RET-AUTO-FBD-06",
+      "type": "forbidden",
+      "tools": [
+        "calculate",
+        "cancel_pending_order",
+        "exchange_delivered_order_items",
+        "get_item_details",
+        "get_order_details",
+        "get_product_details",
+        "get_user_details",
+        "list_all_product_types",
+        "modify_pending_order_address",
+        "modify_pending_order_items",
+        "modify_pending_order_payment",
+        "modify_user_address",
+        "return_delivered_order_items",
+        "transfer_to_human_agents"
+      ],
+      "predicate": "user_not_authenticated",
+      "policy_clause": "At the beginning of the conversation, you have to authenticate the user identity by locating their user id via email, or via name + zip code.",
+      "reason": "You must authenticate the user by locating their user id (via email or name+zip) before taking any other action.",
+      "source_section": "Retail agent policy"
+    },
+    {
+      "id": "RET-AUTO-PRE-07",
+      "type": "precondition",
+      "tools": [
+        "cancel_pending_order",
+        "exchange_delivered_order_items"
+      ],
+      "predicate": "order_known",
+      "policy_clause": "An order can only be cancelled if its status is 'pending', and you should check its status before taking the action.",
+      "reason": "The order must be retrieved to check its status before it can be cancelled.",
+      "source_section": "Retail agent policy > Cancel pending order"
+    },
+    {
+      "id": "RET-AUTO-PRE-08",
+      "type": "precondition",
+      "tools": [
+        "cancel_pending_order",
+        "exchange_delivered_order_items",
+        "modify_pending_order_address",
+        "modify_pending_order_items",
+        "modify_pending_order_payment",
+        "modify_user_address",
+        "return_delivered_order_items"
+      ],
+      "predicate": "user_confirmed",
+      "policy_clause": "Before taking any action that updates the database (cancel, modify, return, exchange), you must list the action details and obtain explicit user confirmation (yes) to proceed.",
+      "reason": "You must list the action details and get explicit user confirmation (yes) before performing this database-updating action.",
+      "source_section": "Retail agent policy"
+    }
+  ],
+  "domain_now": "2024-05-15T15:00:00"
+}

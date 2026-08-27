@@ -1,0 +1,193 @@
+{
+  "domain": "airline",
+  "extraction_samples": 5,
+  "note": "Rules extracted automatically from the policy document. Compare against the hand-written reference set.",
+  "rules": [
+    {
+      "id": "AIR-AUTO-FBD-01",
+      "type": "forbidden",
+      "tools": [
+        "book_reservation"
+      ],
+      "predicate": "baggage_charge_wrong",
+      "policy_clause": "Each extra baggage is 50 dollars.",
+      "reason": "The number of paid bags must match the free baggage allowance for the member's tier and cabin, with extras charged correctly.",
+      "source_section": "Airline Agent Policy > Book flight"
+    },
+    {
+      "id": "AIR-AUTO-FBD-02",
+      "type": "forbidden",
+      "tools": [
+        "update_reservation_baggages"
+      ],
+      "predicate": "baggage_decreased",
+      "policy_clause": "The user can add but not remove checked bags.",
+      "reason": "Checked bags cannot be removed, only added.",
+      "source_section": "Airline Agent Policy > Modify flight"
+    },
+    {
+      "id": "AIR-AUTO-FBD-03",
+      "type": "forbidden",
+      "tools": [
+        "update_reservation_flights"
+      ],
+      "predicate": "cabin_change_after_flown",
+      "policy_clause": "Cabin cannot be changed if any flight in the reservation has already been flown.",
+      "reason": "Cabin class cannot be changed because a segment in this reservation has already been flown.",
+      "source_section": "Airline Agent Policy > Modify flight"
+    },
+    {
+      "id": "AIR-AUTO-FBD-04",
+      "type": "forbidden",
+      "tools": [
+        "update_reservation_flights"
+      ],
+      "predicate": "cabin_is_basic_economy",
+      "policy_clause": "Basic economy flights cannot be modified.",
+      "reason": "Basic economy reservations cannot have their flights modified.",
+      "source_section": "Airline Agent Policy > Modify flight"
+    },
+    {
+      "id": "AIR-AUTO-FBD-05",
+      "type": "forbidden",
+      "tools": [
+        "cancel_reservation"
+      ],
+      "predicate": "cancellation_ineligible",
+      "policy_clause": "Otherwise, flight can be cancelled if any of the following is true: - The booking was made within the last 24 hrs - The flight is cancelled by airline - It is a business flight - The user has travel insurance and the reason for cancellation is covered by insurance.",
+      "reason": "None of the permitted cancellation grounds (24-hour booking window, airline-cancelled flight, business cabin, or covered travel insurance) apply to this reservation, so it cannot be cancelled.",
+      "source_section": "Airline Agent Policy > Cancel flight"
+    },
+    {
+      "id": "AIR-AUTO-FBD-06",
+      "type": "forbidden",
+      "tools": [
+        "send_certificate"
+      ],
+      "predicate": "compensation_exceeds_max",
+      "policy_clause": "the agent can offer a certificate as a gesture after confirming the facts, with the amount being $100 times the number of passengers.",
+      "reason": "The certificate amount exceeds the permitted per-passenger cap for this compensation reason.",
+      "source_section": "Airline Agent Policy > Refunds and Compensation"
+    },
+    {
+      "id": "AIR-AUTO-FBD-07",
+      "type": "forbidden",
+      "tools": [
+        "send_certificate"
+      ],
+      "predicate": "compensation_ineligible",
+      "policy_clause": "Do not compensate if the user is regular member and has no travel insurance and flies (basic) economy.",
+      "reason": "The user is a regular member with no travel insurance and is flying (basic) economy, so they are not eligible for compensation.",
+      "source_section": "Airline Agent Policy > Refunds and Compensation"
+    },
+    {
+      "id": "AIR-AUTO-FBD-08",
+      "type": "forbidden",
+      "tools": [
+        "cancel_reservation"
+      ],
+      "predicate": "has_flown_segment",
+      "policy_clause": "If any portion of the flight has already been flown, the agent cannot help and transfer is needed.",
+      "reason": "Cancellation cannot be processed once any segment of the flight has already departed; the case must be transferred to a human agent instead.",
+      "source_section": "Airline Agent Policy > Cancel flight"
+    },
+    {
+      "id": "AIR-AUTO-FBD-09",
+      "type": "forbidden",
+      "tools": [
+        "update_reservation_passengers"
+      ],
+      "predicate": "passenger_count_changed",
+      "policy_clause": "The user can modify passengers but cannot modify the number of passengers.",
+      "reason": "The number of passengers on the reservation cannot be changed.",
+      "source_section": "Airline Agent Policy > Modify flight"
+    },
+    {
+      "id": "AIR-AUTO-FBD-10",
+      "type": "forbidden",
+      "tools": [
+        "book_reservation"
+      ],
+      "predicate": "payment_limits_violated",
+      "policy_clause": "Each reservation can use at most one travel certificate, at most one credit card, and at most three gift cards.",
+      "reason": "The payment split exceeds the allowed number of certificates, credit cards, or gift cards.",
+      "source_section": "Airline Agent Policy > Book flight"
+    },
+    {
+      "id": "AIR-AUTO-FBD-11",
+      "type": "forbidden",
+      "tools": [
+        "book_reservation",
+        "update_reservation_flights"
+      ],
+      "predicate": "payment_method_unknown",
+      "policy_clause": "All payment methods must already be in user profile for safety reasons.",
+      "reason": "Every payment method used must already be saved on the user's profile.",
+      "source_section": "Airline Agent Policy > Book flight"
+    },
+    {
+      "id": "AIR-AUTO-FBD-12",
+      "type": "forbidden",
+      "tools": [
+        "book_reservation"
+      ],
+      "predicate": "too_many_passengers",
+      "policy_clause": "Each reservation can have at most five passengers.",
+      "reason": "A reservation cannot have more than five passengers.",
+      "source_section": "Airline Agent Policy > Book flight"
+    },
+    {
+      "id": "AIR-AUTO-FBD-13",
+      "type": "forbidden",
+      "tools": [
+        "book_reservation",
+        "calculate",
+        "cancel_reservation",
+        "get_flight_status",
+        "get_reservation_details",
+        "get_user_details",
+        "list_all_airports",
+        "search_direct_flight",
+        "search_onestop_flight",
+        "send_certificate",
+        "transfer_to_human_agents",
+        "update_reservation_baggages",
+        "update_reservation_flights",
+        "update_reservation_passengers"
+      ],
+      "predicate": "user_not_authenticated",
+      "policy_clause": "The agent must first obtain the user id from the user.",
+      "reason": "The user id must be obtained before booking a reservation.",
+      "source_section": "Airline Agent Policy > Book flight"
+    },
+    {
+      "id": "AIR-AUTO-PRE-14",
+      "type": "precondition",
+      "tools": [
+        "cancel_reservation",
+        "update_reservation_baggages",
+        "update_reservation_flights",
+        "update_reservation_passengers"
+      ],
+      "predicate": "reservation_known",
+      "policy_clause": "First, the agent must obtain the user id and reservation id.",
+      "reason": "The reservation must be retrieved before it can be cancelled.",
+      "source_section": "Airline Agent Policy > Cancel flight"
+    },
+    {
+      "id": "AIR-AUTO-PRE-15",
+      "type": "precondition",
+      "tools": [
+        "book_reservation",
+        "update_reservation_baggages",
+        "update_reservation_flights",
+        "update_reservation_passengers"
+      ],
+      "predicate": "user_confirmed",
+      "policy_clause": "Before taking any actions that update the booking database (booking, modifying flights, editing baggage, changing cabin class, or updating passenger information), you must list the action details and obtain explicit user confirmation (yes) to proceed.",
+      "reason": "This action updates the booking database and requires explicit user confirmation (yes) before proceeding; list the action details and obtain confirmation first.",
+      "source_section": "Airline Agent Policy"
+    }
+  ],
+  "domain_now": "2024-05-15T15:00:00"
+}

@@ -1,0 +1,382 @@
+{
+  "sections_total": 8,
+  "sections_with_rules": 6,
+  "candidates": 79,
+  "dropped_unknown_condition": 0,
+  "dropped_unknown_tool": 19,
+  "dropped_duplicate": 0,
+  "repaired_self_blocking": 0,
+  "dropped_minority": 3,
+  "dropped_arg_mismatch": 8,
+  "dropped_unscoped_wildcard": 11,
+  "dropped_contradiction": 0,
+  "dropped_unsatisfiable": 5,
+  "repaired_write_scope": 5,
+  "emitted": 10,
+  "samples": 5,
+  "llm_calls": 40,
+  "cost_usd": 0.0,
+  "dropped_details": [
+    {
+      "block_when": "user_has_not_been_authenticated",
+      "tools": [
+        "*"
+      ],
+      "clause": "The agent must first obtain the user id from the user.",
+      "reason": "predicate user_not_authenticated is unsatisfiable in this domain: none of ['find_user_id_by_email', 'find_user_id_by_name_zip'] exist"
+    },
+    {
+      "block_when": "passenger_count_exceeds_the_maximum",
+      "tools": [
+        "*"
+      ],
+      "clause": "Each reservation can have at most five passengers.",
+      "reason": "no known tool in ['*']"
+    },
+    {
+      "block_when": "payment_method_is_not_on_the_user_profile",
+      "tools": [
+        "*"
+      ],
+      "clause": "All payment methods must already be in user profile for safety reasons.",
+      "reason": "no known tool in ['*']"
+    },
+    {
+      "block_when": "insurance_would_be_added_after_booking",
+      "tools": [
+        "update_reservation_flights"
+      ],
+      "clause": "The user cannot add insurance after initial booking.",
+      "reason": "tool does not take the argument the condition reads"
+    },
+    {
+      "block_when": "insurance_would_be_added_after_booking",
+      "tools": [
+        "update_reservation_flights"
+      ],
+      "clause": "The user cannot add insurance after initial booking.",
+      "reason": "no known tool in ['update_reservation_flights']"
+    },
+    {
+      "block_when": "user_is_not_eligible_for_compensation",
+      "tools": [
+        "*"
+      ],
+      "clause": "Do not compensate if the user is regular member and has no travel insurance and flies (basic) economy.",
+      "reason": "no known tool in ['*']"
+    },
+    {
+      "block_when": "no_cancellation_ground_applies",
+      "tools": [
+        "*"
+      ],
+      "clause": "Do not offer compensation for any other reason than the ones listed above.",
+      "reason": "no known tool in ['*']"
+    },
+    {
+      "block_when": "user_has_not_been_authenticated",
+      "tools": [
+        "book_reservation"
+      ],
+      "clause": "The agent must first obtain the user id from the user.",
+      "reason": "predicate user_not_authenticated is unsatisfiable in this domain: none of ['find_user_id_by_email', 'find_user_id_by_name_zip'] exist"
+    },
+    {
+      "block_when": "payment_method_is_not_on_the_profile",
+      "tools": [
+        "book_reservation"
+      ],
+      "clause": "All payment methods must already be in user profile for safety reasons.",
+      "reason": "tool does not take the argument the condition reads"
+    },
+    {
+      "block_when": "payment_method_is_not_on_the_profile",
+      "tools": [
+        "book_reservation"
+      ],
+      "clause": "All payment methods must already be in user profile for safety reasons.",
+      "reason": "no known tool in ['book_reservation']"
+    },
+    {
+      "block_when": "insurance_would_be_added_after_booking",
+      "tools": [
+        "update_reservation_flights"
+      ],
+      "clause": "The user cannot add insurance after initial booking.",
+      "reason": "tool does not take the argument the condition reads"
+    },
+    {
+      "block_when": "insurance_would_be_added_after_booking",
+      "tools": [
+        "update_reservation_flights"
+      ],
+      "clause": "The user cannot add insurance after initial booking.",
+      "reason": "no known tool in ['update_reservation_flights']"
+    },
+    {
+      "block_when": "user_is_not_eligible_for_compensation",
+      "tools": [
+        "*"
+      ],
+      "clause": "Do not compensate if the user is regular member and has no travel insurance and flies (basic) economy.",
+      "reason": "no known tool in ['*']"
+    },
+    {
+      "block_when": "no_cancellation_ground_applies",
+      "tools": [
+        "*"
+      ],
+      "clause": "Do not offer compensation for any other reason than the ones listed above.",
+      "reason": "no known tool in ['*']"
+    },
+    {
+      "block_when": "a_segment_has_already_flown",
+      "tools": [
+        "book_reservation"
+      ],
+      "clause": "If the status is **flying**, the flight has taken off but not landed, cannot be booked.",
+      "reason": "tool does not take the argument the condition reads"
+    },
+    {
+      "block_when": "a_segment_has_already_flown",
+      "tools": [
+        "book_reservation"
+      ],
+      "clause": "If the status is **flying**, the flight has taken off but not landed, cannot be booked.",
+      "reason": "no known tool in ['book_reservation']"
+    },
+    {
+      "block_when": "a_segment_has_already_flown",
+      "tools": [
+        "book_reservation"
+      ],
+      "clause": "If the status is **delayed** or **on time**, the flight has not taken off, cannot be booked.",
+      "reason": "tool does not take the argument the condition reads"
+    },
+    {
+      "block_when": "a_segment_has_already_flown",
+      "tools": [
+        "book_reservation"
+      ],
+      "clause": "If the status is **delayed** or **on time**, the flight has not taken off, cannot be booked.",
+      "reason": "no known tool in ['book_reservation']"
+    },
+    {
+      "block_when": "user_has_not_been_authenticated",
+      "tools": [
+        "*"
+      ],
+      "clause": "The agent must first obtain the user id from the user.",
+      "reason": "predicate user_not_authenticated is unsatisfiable in this domain: none of ['find_user_id_by_email', 'find_user_id_by_name_zip'] exist"
+    },
+    {
+      "block_when": "insurance_would_be_added_after_booking",
+      "tools": [
+        "update_reservation_flights"
+      ],
+      "clause": "The user cannot add insurance after initial booking.",
+      "reason": "tool does not take the argument the condition reads"
+    },
+    {
+      "block_when": "insurance_would_be_added_after_booking",
+      "tools": [
+        "update_reservation_flights"
+      ],
+      "clause": "The user cannot add insurance after initial booking.",
+      "reason": "no known tool in ['update_reservation_flights']"
+    },
+    {
+      "block_when": "user_is_not_eligible_for_compensation",
+      "tools": [
+        "*"
+      ],
+      "clause": "Do not compensate if the user is regular member and has no travel insurance and flies (basic) economy.",
+      "reason": "no known tool in ['*']"
+    },
+    {
+      "block_when": "user_has_not_been_authenticated",
+      "tools": [
+        "*"
+      ],
+      "clause": "The agent must first obtain the user id from the user.",
+      "reason": "predicate user_not_authenticated is unsatisfiable in this domain: none of ['find_user_id_by_email', 'find_user_id_by_name_zip'] exist"
+    },
+    {
+      "block_when": "insurance_would_be_added_after_booking",
+      "tools": [
+        "update_reservation_flights"
+      ],
+      "clause": "The user cannot add insurance after initial booking.",
+      "reason": "tool does not take the argument the condition reads"
+    },
+    {
+      "block_when": "insurance_would_be_added_after_booking",
+      "tools": [
+        "update_reservation_flights"
+      ],
+      "clause": "The user cannot add insurance after initial booking.",
+      "reason": "no known tool in ['update_reservation_flights']"
+    },
+    {
+      "block_when": "user_is_not_eligible_for_compensation",
+      "tools": [
+        "*"
+      ],
+      "clause": "Do not compensate if the user is regular member and has no travel insurance and flies (basic) economy.",
+      "reason": "no known tool in ['*']"
+    },
+    {
+      "block_when": "no_cancellation_ground_applies",
+      "tools": [
+        "*"
+      ],
+      "clause": "Do not offer compensation for any other reason than the ones listed above.",
+      "reason": "no known tool in ['*']"
+    },
+    {
+      "block_when": "user_has_not_been_authenticated",
+      "tools": [
+        "*"
+      ],
+      "clause": "The agent must first obtain the user id from the user.",
+      "reason": "predicate user_not_authenticated is unsatisfiable in this domain: none of ['find_user_id_by_email', 'find_user_id_by_name_zip'] exist"
+    },
+    {
+      "block_when": "insurance_would_be_added_after_booking",
+      "tools": [
+        "update_reservation_flights"
+      ],
+      "clause": "The user cannot add insurance after initial booking.",
+      "reason": "tool does not take the argument the condition reads"
+    },
+    {
+      "block_when": "insurance_would_be_added_after_booking",
+      "tools": [
+        "update_reservation_flights"
+      ],
+      "clause": "The user cannot add insurance after initial booking.",
+      "reason": "no known tool in ['update_reservation_flights']"
+    },
+    {
+      "block_when": "user_is_not_eligible_for_compensation",
+      "tools": [
+        "*"
+      ],
+      "clause": "Do not compensate if the user is regular member and has no travel insurance and flies (basic) economy.",
+      "reason": "no known tool in ['*']"
+    },
+    {
+      "block_when": "no_cancellation_ground_applies",
+      "tools": [
+        "*"
+      ],
+      "clause": "Do not offer compensation for any other reason than the ones listed above.",
+      "reason": "no known tool in ['*']"
+    }
+  ],
+  "repair_details": [
+    {
+      "block_when": "user_has_not_confirmed",
+      "removed_tools": [
+        "calculate",
+        "get_flight_status",
+        "get_reservation_details",
+        "get_user_details",
+        "list_all_airports",
+        "search_direct_flight",
+        "search_onestop_flight",
+        "transfer_to_human_agents"
+      ],
+      "clause": "Always confirms the facts before offering compensation.",
+      "reason": "confirmation precondition bound to non-write tools"
+    },
+    {
+      "block_when": "user_has_not_confirmed",
+      "removed_tools": [
+        "calculate",
+        "get_flight_status",
+        "get_reservation_details",
+        "get_user_details",
+        "list_all_airports",
+        "search_direct_flight",
+        "search_onestop_flight",
+        "transfer_to_human_agents"
+      ],
+      "clause": "Always confirms the facts before offering compensation.",
+      "reason": "confirmation precondition bound to non-write tools"
+    },
+    {
+      "block_when": "user_has_not_confirmed",
+      "removed_tools": [
+        "calculate",
+        "get_flight_status",
+        "get_reservation_details",
+        "get_user_details",
+        "list_all_airports",
+        "search_direct_flight",
+        "search_onestop_flight",
+        "transfer_to_human_agents"
+      ],
+      "clause": "Always confirms the facts before offering compensation.",
+      "reason": "confirmation precondition bound to non-write tools"
+    },
+    {
+      "block_when": "user_has_not_confirmed",
+      "removed_tools": [
+        "calculate",
+        "get_flight_status",
+        "get_reservation_details",
+        "get_user_details",
+        "list_all_airports",
+        "search_direct_flight",
+        "search_onestop_flight",
+        "transfer_to_human_agents"
+      ],
+      "clause": "Always confirms the facts before offering compensation.",
+      "reason": "confirmation precondition bound to non-write tools"
+    },
+    {
+      "block_when": "user_has_not_confirmed",
+      "removed_tools": [
+        "calculate",
+        "get_flight_status",
+        "get_reservation_details",
+        "get_user_details",
+        "list_all_airports",
+        "search_direct_flight",
+        "search_onestop_flight",
+        "transfer_to_human_agents"
+      ],
+      "clause": "Always confirms the facts before offering compensation.",
+      "reason": "confirmation precondition bound to non-write tools"
+    }
+  ],
+  "minority_details": [
+    {
+      "block_when": "a_segment_has_already_flown",
+      "predicate": "has_flown_segment",
+      "rejected_tools": [
+        "update_reservation_flights"
+      ],
+      "threshold": "3/5"
+    },
+    {
+      "block_when": "cabin_is_basic_economy",
+      "predicate": "cabin_is_basic_economy",
+      "rejected_tools": [
+        "update_reservation_baggages",
+        "update_reservation_passengers"
+      ],
+      "threshold": "3/5"
+    },
+    {
+      "block_when": "a_segment_has_already_flown",
+      "predicate": "has_flown_segment",
+      "rejected_tools": [
+        "update_reservation_flights"
+      ],
+      "threshold": "3/5"
+    }
+  ],
+  "contradiction_details": []
+}

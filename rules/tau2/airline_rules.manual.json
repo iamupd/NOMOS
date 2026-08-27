@@ -1,0 +1,179 @@
+{
+  "domain": "airline",
+  "domain_now": "2024-05-15T15:00:00",
+  "note": "Rules derived by hand from the airline agent policy; serves as the reference set against which compiler-generated rules are evaluated. Each entry cites the policy clause it enforces.",
+  "rules": [
+    {
+      "id": "AIR-PRE-01",
+      "type": "precondition",
+      "tools": [
+        "book_reservation",
+        "update_reservation_flights",
+        "update_reservation_passengers",
+        "update_reservation_baggages",
+        "cancel_reservation",
+        "send_certificate"
+      ],
+      "predicate": "user_confirmed",
+      "policy_clause": "Before taking any actions that update the booking database, you must list the action details and obtain explicit user confirmation (yes) to proceed.",
+      "reason": "Policy requires explicit user confirmation before any action that updates the booking database. List the action details and ask the user to confirm with 'yes' before calling this tool."
+    },
+    {
+      "id": "AIR-PRE-02",
+      "type": "precondition",
+      "tools": [
+        "update_reservation_flights",
+        "update_reservation_passengers",
+        "update_reservation_baggages",
+        "cancel_reservation"
+      ],
+      "predicate": "reservation_known",
+      "policy_clause": "First, the agent must obtain the user id and reservation id.",
+      "reason": "The reservation has not been retrieved yet. Call get_reservation_details for this reservation id before modifying or cancelling it."
+    },
+    {
+      "id": "AIR-FBD-01",
+      "type": "forbidden",
+      "tools": [
+        "update_reservation_flights"
+      ],
+      "predicate": "cabin_is_basic_economy",
+      "policy_clause": "Basic economy flights cannot be modified.",
+      "reason": "This reservation is basic economy and its flights cannot be modified. Explain this to the user instead of calling the tool."
+    },
+    {
+      "id": "AIR-FBD-02",
+      "type": "forbidden",
+      "tools": [
+        "update_reservation_passengers"
+      ],
+      "predicate": "passenger_count_changed",
+      "policy_clause": "The user can modify passengers but cannot modify the number of passengers.",
+      "reason": "The number of passengers cannot be changed. Submit the same number of passengers as the existing reservation."
+    },
+    {
+      "id": "AIR-FBD-03",
+      "type": "forbidden",
+      "tools": [
+        "update_reservation_baggages"
+      ],
+      "predicate": "baggage_decreased",
+      "policy_clause": "The user can add but not remove checked bags.",
+      "reason": "Checked bags can be added but not removed. The requested total is lower than the current one."
+    },
+    {
+      "id": "AIR-FBD-04",
+      "type": "forbidden",
+      "tools": [
+        "update_reservation_baggages"
+      ],
+      "predicate": "insurance_added_after_booking",
+      "policy_clause": "The user cannot add insurance after initial booking.",
+      "reason": "Travel insurance cannot be added after the initial booking."
+    },
+    {
+      "id": "AIR-FBD-05",
+      "type": "forbidden",
+      "tools": [
+        "send_certificate"
+      ],
+      "predicate": "compensation_ineligible",
+      "policy_clause": "Do not compensate if the user is regular member and has no travel insurance and flies (basic) economy.",
+      "reason": "This user is not eligible for compensation: a regular member with no travel insurance flying (basic) economy. Do not issue a certificate."
+    },
+    {
+      "id": "AIR-FBD-06",
+      "type": "forbidden",
+      "tools": [
+        "send_certificate"
+      ],
+      "predicate": "user_details_unobserved",
+      "policy_clause": "Always confirms the facts before offering compensation.",
+      "reason": "Compensation requires confirming the facts first. Call get_user_details for this user before issuing a certificate."
+    },
+    {
+      "id": "AIR-FBD-07",
+      "type": "forbidden",
+      "tools": [
+        "cancel_reservation"
+      ],
+      "predicate": "cancellation_ineligible",
+      "policy_clause": "Flight can be cancelled if any of the following is true: the booking was made within the last 24 hrs, the flight is cancelled by airline, it is a business flight, the user has travel insurance and the reason is covered. The API does not check that cancellation rules are met, so the agent must make sure the rules apply before calling the API!",
+      "reason": "This reservation does not meet any cancellation ground: it was not booked within the last 24 hours, is not business cabin, has no travel insurance, and no airline-cancelled flight has been confirmed. Explain this to the user or transfer to a human agent instead of cancelling."
+    },
+    {
+      "id": "AIR-FBD-08",
+      "type": "forbidden",
+      "tools": [
+        "update_reservation_flights"
+      ],
+      "predicate": "cabin_change_after_flown",
+      "policy_clause": "Cabin cannot be changed if any flight in the reservation has already been flown.",
+      "reason": "A segment of this reservation has already been flown, so the cabin class can no longer be changed."
+    },
+    {
+      "id": "AIR-FBD-09",
+      "type": "forbidden",
+      "tools": [
+        "book_reservation",
+        "update_reservation_flights",
+        "update_reservation_baggages"
+      ],
+      "predicate": "payment_method_unknown",
+      "policy_clause": "All payment methods must already be in user profile for safety reasons.",
+      "reason": "The requested payment method is not saved in the user profile. Only payment methods already on the profile may be used."
+    },
+    {
+      "id": "AIR-FBD-10",
+      "type": "forbidden",
+      "tools": [
+        "book_reservation"
+      ],
+      "predicate": "too_many_passengers",
+      "policy_clause": "Each reservation can have at most five passengers.",
+      "reason": "A reservation may contain at most five passengers."
+    },
+    {
+      "id": "AIR-FBD-12",
+      "type": "forbidden",
+      "tools": [
+        "cancel_reservation"
+      ],
+      "predicate": "has_flown_segment",
+      "policy_clause": "If any portion of the flight has already been flown, the agent cannot help and transfer is needed.",
+      "reason": "A portion of this reservation has already been flown, so it cannot be cancelled here. Transfer the user to a human agent."
+    },
+    {
+      "id": "AIR-FBD-11",
+      "type": "forbidden",
+      "tools": [
+        "send_certificate"
+      ],
+      "predicate": "compensation_amount_wrong",
+      "policy_clause": "The amount being $100 times the number of passengers (cancelled flights) or $50 times the number of passengers (delayed flights). Do not offer compensation for any other reason than the ones listed above.",
+      "reason": "The certificate amount must be $100 per passenger for a cancelled flight or $50 per passenger for a delayed one. Recompute the amount from the number of passengers on the affected reservation."
+    },
+    {
+      "id": "AIR-FBD-13",
+      "type": "forbidden",
+      "tools": [
+        "book_reservation",
+        "update_reservation_baggages"
+      ],
+      "predicate": "baggage_charge_wrong",
+      "policy_clause": "If the booking user is a regular member: 0 free checked bag for each basic economy passenger, 1 for economy, 2 for business; silver: 1/2/3; gold: 2/3/4. Each extra baggage is 50 dollars.",
+      "reason": "The number of paid bags does not match the free allowance for this membership level and cabin. Recompute nonfree_baggages as total bags minus the free allowance times the number of passengers."
+    },
+    {
+      "id": "AIR-FBD-14",
+      "type": "forbidden",
+      "tools": [
+        "book_reservation",
+        "update_reservation_flights"
+      ],
+      "predicate": "payment_limits_violated",
+      "policy_clause": "Each reservation can use at most one travel certificate, at most one credit card, and at most three gift cards.",
+      "reason": "The payment split exceeds the allowed number of payment methods: at most one travel certificate, one credit card, and three gift cards."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+suite,model,condition,pairs,asr_percent,benign_utility_percent,notes
+banking,gemma-4-26B,undefended,288,46.5,79.2,two attack reps; three benign reps
+banking,gemma-4-26B,gate,288,0.0,70.8,183/183 attempted attacks blocked
+banking,gemma-4-26B,adaptive_undefended,144,34.7,,gate-aware attack
+banking,gemma-4-26B,adaptive_gate,144,0.0,,gate-aware attack
+banking,Llama-3.3-70B,undefended,184,44.6,37.5,model-invariance check
+banking,Llama-3.3-70B,gate,135,0.0,35.4,55/55 attempted attacks blocked
+slack,gemma-4-26B,undefended,105,70.5,90.5,
+slack,gemma-4-26B,gate,105,0.0,14.3,
+travel,gemma-4-26B,undefended,140,10.0,75.0,
+travel,gemma-4-26B,gate,140,0.0,60.0,residual output-only goal out of scope
+workspace,gemma-4-26B,undefended,558,7.3,87.5,
+workspace,gemma-4-26B,gate,560,0.2,65.0,

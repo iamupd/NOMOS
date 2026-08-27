@@ -1,0 +1,124 @@
+{
+  "domain": "airline",
+  "extraction_samples": 5,
+  "note": "Rules extracted automatically from the policy document. Compare against the hand-written reference set.",
+  "rules": [
+    {
+      "id": "AIR-AUTO-FBD-01",
+      "type": "forbidden",
+      "tools": [
+        "update_reservation_baggages"
+      ],
+      "predicate": "baggage_decreased",
+      "policy_clause": "The user can add but not remove checked bags.",
+      "reason": "You cannot remove checked bags; you can only add them.",
+      "source_section": "Airline Agent Policy > Modify flight"
+    },
+    {
+      "id": "AIR-AUTO-FBD-02",
+      "type": "forbidden",
+      "tools": [
+        "update_reservation_flights"
+      ],
+      "predicate": "cabin_change_after_flown",
+      "policy_clause": "Cabin cannot be changed if any flight in the reservation has already been flown.",
+      "reason": "You cannot change the cabin if a segment of the flight has already been flown.",
+      "source_section": "Airline Agent Policy > Modify flight"
+    },
+    {
+      "id": "AIR-AUTO-FBD-03",
+      "type": "forbidden",
+      "tools": [
+        "update_reservation_flights"
+      ],
+      "predicate": "cabin_is_basic_economy",
+      "policy_clause": "Basic economy flights cannot be modified.",
+      "reason": "Basic economy reservations are not eligible for flight modifications.",
+      "source_section": "Airline Agent Policy > Modify flight"
+    },
+    {
+      "id": "AIR-AUTO-FBD-04",
+      "type": "forbidden",
+      "tools": [
+        "cancel_reservation"
+      ],
+      "predicate": "cancellation_ineligible",
+      "policy_clause": "Otherwise, flight can be cancelled if any of the following is true: \n- The booking was made within the last 24 hrs\n- The flight is cancelled by airline\n- It is a business flight\n- The user has travel insurance and the reason for cancellation is covered by insurance.",
+      "reason": "The cancellation must meet at least one of the required criteria: booked within 24h, airline-cancelled, business class, or covered by insurance.",
+      "source_section": "Airline Agent Policy > Cancel flight"
+    },
+    {
+      "id": "AIR-AUTO-FBD-05",
+      "type": "forbidden",
+      "tools": [
+        "cancel_reservation"
+      ],
+      "predicate": "has_flown_segment",
+      "policy_clause": "If any portion of the flight has already been flown, the agent cannot help and transfer is needed.",
+      "reason": "The agent cannot cancel a reservation if any segment of the flight has already been completed.",
+      "source_section": "Airline Agent Policy > Cancel flight"
+    },
+    {
+      "id": "AIR-AUTO-FBD-06",
+      "type": "forbidden",
+      "tools": [
+        "update_reservation_passengers"
+      ],
+      "predicate": "passenger_count_changed",
+      "policy_clause": "The user can modify passengers but cannot modify the number of passengers.",
+      "reason": "The total number of passengers in the reservation cannot be changed.",
+      "source_section": "Airline Agent Policy > Modify flight"
+    },
+    {
+      "id": "AIR-AUTO-FBD-07",
+      "type": "forbidden",
+      "tools": [
+        "book_reservation"
+      ],
+      "predicate": "payment_limits_violated",
+      "policy_clause": "Each reservation can use at most one travel certificate, at most one credit card, and at most three gift cards.",
+      "reason": "The number of certificates, credit cards, or gift cards used exceeds the allowed limit.",
+      "source_section": "Airline Agent Policy > Book flight"
+    },
+    {
+      "id": "AIR-AUTO-FBD-08",
+      "type": "forbidden",
+      "tools": [
+        "book_reservation",
+        "update_reservation_flights"
+      ],
+      "predicate": "payment_method_unknown",
+      "policy_clause": "The payment method must already be in user profile for safety reasons.",
+      "reason": "The payment method provided must be a saved method on the user's profile.",
+      "source_section": "Airline Agent Policy > Modify flight"
+    },
+    {
+      "id": "AIR-AUTO-FBD-09",
+      "type": "forbidden",
+      "tools": [
+        "book_reservation"
+      ],
+      "predicate": "too_many_passengers",
+      "policy_clause": "Each reservation can have at most five passengers.",
+      "reason": "A reservation cannot exceed the maximum limit of five passengers.",
+      "source_section": "Airline Agent Policy > Book flight"
+    },
+    {
+      "id": "AIR-AUTO-PRE-10",
+      "type": "precondition",
+      "tools": [
+        "book_reservation",
+        "cancel_reservation",
+        "send_certificate",
+        "update_reservation_baggages",
+        "update_reservation_flights",
+        "update_reservation_passengers"
+      ],
+      "predicate": "user_confirmed",
+      "policy_clause": "Before taking any actions that update the booking database (booking, modifying flights, editing baggage, changing cabin class, or updating passenger information), you must list the action details and obtain explicit user confirmation (yes) to proceed.",
+      "reason": "",
+      "source_section": "Airline Agent Policy"
+    }
+  ],
+  "domain_now": "2024-05-15T15:00:00"
+}

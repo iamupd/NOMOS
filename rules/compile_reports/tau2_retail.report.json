@@ -1,0 +1,93 @@
+{
+  "sections_total": 12,
+  "sections_with_rules": 8,
+  "candidates": 53,
+  "dropped_unknown_condition": 0,
+  "dropped_unknown_tool": 2,
+  "dropped_duplicate": 0,
+  "repaired_self_blocking": 4,
+  "dropped_minority": 1,
+  "dropped_arg_mismatch": 1,
+  "dropped_unscoped_wildcard": 2,
+  "dropped_contradiction": 0,
+  "emitted": 5,
+  "samples": 5,
+  "llm_calls": 60,
+  "dropped_details": [
+    {
+      "block_when": "item_lists_have_different_lengths",
+      "tools": [
+        "modify_pending_order_payment",
+        "modify_pending_order_address"
+      ],
+      "clause": "Be sure that all items to be changed are collected into a list before making the tool call!!!",
+      "reason": "tool does not take the argument the condition reads"
+    },
+    {
+      "block_when": "order_is_not_pending",
+      "tools": [
+        "*"
+      ],
+      "clause": "An order can only be modified if its status is 'pending'",
+      "reason": "no known tool in ['*']"
+    },
+    {
+      "block_when": "order_is_not_pending",
+      "tools": [
+        "*"
+      ],
+      "clause": "An order can only be modified if its status is 'pending'",
+      "reason": "no known tool in ['*']"
+    }
+  ],
+  "repair_details": [
+    {
+      "block_when": "user_has_not_been_authenticated",
+      "removed_tools": [
+        "find_user_id_by_email",
+        "find_user_id_by_name_zip"
+      ],
+      "clause": "At the beginning of the conversation, you have to authenticate the user identity by locating their user id via email, or via name + zip code.",
+      "reason": "tool satisfies the condition it would be blocked by"
+    },
+    {
+      "block_when": "user_has_not_been_authenticated",
+      "removed_tools": [
+        "find_user_id_by_email",
+        "find_user_id_by_name_zip"
+      ],
+      "clause": "At the beginning of the conversation, you have to authenticate the user identity by locating their user id via email, or via name + zip code.",
+      "reason": "tool satisfies the condition it would be blocked by"
+    },
+    {
+      "block_when": "user_has_not_been_authenticated",
+      "removed_tools": [
+        "find_user_id_by_email",
+        "find_user_id_by_name_zip"
+      ],
+      "clause": "At the beginning of the conversation, you have to authenticate the user identity by locating their user id via email, or via name + zip code.",
+      "reason": "tool satisfies the condition it would be blocked by"
+    },
+    {
+      "block_when": "user_has_not_been_authenticated",
+      "removed_tools": [
+        "find_user_id_by_email",
+        "find_user_id_by_name_zip"
+      ],
+      "clause": "At the beginning of the conversation, you have to authenticate the user identity by locating their user id via email, or via name + zip code.",
+      "reason": "tool satisfies the condition it would be blocked by"
+    }
+  ],
+  "minority_details": [
+    {
+      "block_when": "order_is_not_pending",
+      "predicate": "order_not_pending",
+      "rejected_tools": [
+        "exchange_delivered_order_items",
+        "get_order_details"
+      ],
+      "threshold": "3/5"
+    }
+  ],
+  "contradiction_details": []
+}
