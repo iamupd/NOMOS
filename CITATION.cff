@@ -12,7 +12,7 @@ authors:
   - family-names: Choi
     given-names: James
     affiliation: "Corners Co., Ltd."
-license: CC-BY-4.0
+license: CC-BY-NC-4.0
 preferred-citation:
   type: article
   title: "NOMOS: Statically Verified Policy Gates for Tool-Using LLM Agents"

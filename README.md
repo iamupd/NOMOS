@@ -83,8 +83,9 @@ model-invariance check, Llama-3.3-70B-Instruct).
 
 ## License
 
-See `LICENSE`. Rule sets, policies, reports, logs, and results are released
-under CC BY 4.0; the analysis scripts under the MIT License.
+See `LICENSE`. All materials in this package (rule sets, policies, reports, logs, results,
+and analysis scripts) are released under CC BY-NC 4.0 for non-commercial use
+with attribution.
 
 ## Citation
 
