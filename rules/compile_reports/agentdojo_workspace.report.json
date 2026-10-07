@@ -1,0 +1,26 @@
+{
+  "sections_total": 5,
+  "candidates": 30,
+  "dropped_unknown_condition": 0,
+  "dropped_unknown_tool": 0,
+  "dropped_minority": 0,
+  "repaired_write_scope": 0,
+  "repaired_inactive_accessor": 1,
+  "emitted": 4,
+  "samples": 5,
+  "llm_calls": 25,
+  "cost_usd": 0.0,
+  "providers": [],
+  "details": [
+    {
+      "reason": "inactive_accessor:retargeted",
+      "rule": "WOR-AUTO-FBD-02",
+      "tools": [
+        "add_calendar_event_participants",
+        "create_calendar_event",
+        "send_email",
+        "share_file"
+      ]
+    }
+  ]
+}

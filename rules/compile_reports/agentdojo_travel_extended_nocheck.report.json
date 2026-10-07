@@ -1,0 +1,29 @@
+{
+  "sections_total": 4,
+  "candidates": 17,
+  "dropped_unknown_condition": 0,
+  "dropped_unknown_tool": 0,
+  "dropped_minority": 2,
+  "repaired_write_scope": 0,
+  "emitted": 2,
+  "samples": 5,
+  "llm_calls": 20,
+  "cost_usd": 0.0,
+  "providers": [],
+  "details": [
+    {
+      "reason": "minority binding",
+      "predicate": "action_requested_by_user",
+      "tools": [
+        "create_calendar_event"
+      ]
+    },
+    {
+      "reason": "minority binding",
+      "predicate": "action_requested_by_user",
+      "tools": [
+        "create_calendar_event"
+      ]
+    }
+  ]
+}

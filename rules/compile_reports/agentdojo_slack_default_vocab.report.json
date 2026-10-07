@@ -1,0 +1,14 @@
+{
+  "sections_total": 4,
+  "candidates": 20,
+  "dropped_unknown_condition": 0,
+  "dropped_unknown_tool": 0,
+  "dropped_minority": 0,
+  "repaired_write_scope": 0,
+  "emitted": 2,
+  "samples": 5,
+  "llm_calls": 20,
+  "cost_usd": 0.0,
+  "providers": [],
+  "details": []
+}

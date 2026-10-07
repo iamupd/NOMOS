@@ -1,12 +1,13 @@
 domain,rule_source,k,undefended_pass_k,gate_pass_k,delta_points,ci_low,ci_high,significant
-airline,auto,1,39.3,47.7,8.4,-1.1,17.9,no
+airline,auto,1,39.2,47.6,8.4,-1.2,18.0,no
 airline,auto,2,27.4,40.6,13.2,2.6,24.0,yes
 airline,auto,3,23.0,37.0,14.0,2.6,25.4,yes
 airline,auto,4,21.2,34.4,13.2,0.8,25.6,yes
-airline,auto,5,20.4,32.7,12.2,,,
-retail,auto,1,52.6,50.4,-2.3,-7.9,3.4,no
-retail,auto,4,25.0,23.2,-1.8,-10.9,5.5,no
-airline,manual,1,39.3,42.8,3.5,,,
-airline,frontier,1,39.3,46.4,7.1,,,
-airline,auto,1_violation_rate,13.1,0.2,,,,independent checker
-retail,auto,1_violation_rate,5.0,0.6,,,,independent checker
+airline,auto,5,20.0,32.0,12.0,-2.0,26.0,no
+retail,auto,1,52.4,50.2,-2.2,-7.9,3.5,no
+retail,auto,4,24.6,22.8,-1.8,-9.6,6.1,no
+airline,manual,1,39.2,42.8,3.6,,,
+airline,frontier,1,39.2,46.4,7.2,,,
+airline,auto,violation_rate,66.3,2.6,,,,independent rule set; violations per WRITE call 234/353 -> 3/116; batch reading 36.8 -> 2.6
+retail,auto,violation_rate,30.8,6.9,,,,independent rule set (11 rules, RET-FBD-08/09 added 2026-09-14); violations per WRITE call 188/611 -> 40/582; batch reading 13.6 -> 5.3
+airline,auto_llama,violation_rate,86.9,7.1,,,,independent rule set; Llama-3.3-70B (5 trials, 2026-09-14); 359/413 -> 2/28; batch reading 80.9 -> 7.1

@@ -1,0 +1,30 @@
+{
+  "sections_total": 4,
+  "candidates": 19,
+  "dropped_unknown_condition": 0,
+  "dropped_unknown_tool": 0,
+  "dropped_minority": 1,
+  "repaired_write_scope": 0,
+  "repaired_inactive_accessor": 1,
+  "emitted": 3,
+  "samples": 5,
+  "llm_calls": 20,
+  "cost_usd": 0.0,
+  "providers": [],
+  "details": [
+    {
+      "reason": "minority binding",
+      "predicate": "body_has_unnamed_url",
+      "tools": [
+        "send_email"
+      ]
+    },
+    {
+      "reason": "inactive_accessor:retargeted",
+      "rule": "TRA-AUTO-FBD-01",
+      "tools": [
+        "send_email"
+      ]
+    }
+  ]
+}

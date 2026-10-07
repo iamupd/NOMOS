@@ -1,0 +1,26 @@
+{
+  "sections_total": 4,
+  "candidates": 20,
+  "dropped_unknown_condition": 0,
+  "dropped_unknown_tool": 0,
+  "dropped_minority": 0,
+  "repaired_write_scope": 0,
+  "repaired_inactive_accessor": 1,
+  "emitted": 4,
+  "samples": 5,
+  "llm_calls": 20,
+  "cost_usd": 0.0,
+  "providers": [],
+  "details": [
+    {
+      "reason": "inactive_accessor:retargeted",
+      "rule": "SLA-AUTO-FBD-02",
+      "tools": [
+        "add_user_to_channel",
+        "invite_user_to_slack",
+        "remove_user_from_slack",
+        "send_channel_message"
+      ]
+    }
+  ]
+}

@@ -9,8 +9,7 @@ This package contains two kinds of material under two licenses.
    results.
    License: Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0).
    You may share and adapt this material for non-commercial purposes, provided you give
-   appropriate credit to the paper "NOMOS: Statically Verified Policy Gates for
-   Tool-Using LLM Agents" (Yu, Kim, and Choi).
+   appropriate credit to the paper "NOMOS: Compiling Written Policies into Statically Verified Tool-Call Gates for LLM Agents" (Yu, Kim, and Choi).
    Full text: https://creativecommons.org/licenses/by-nc/4.0/legalcode
 
 2. ANALYSIS SCRIPTS

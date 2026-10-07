@@ -1,0 +1,36 @@
+{
+  "sections_total": 5,
+  "candidates": 27,
+  "dropped_unknown_condition": 0,
+  "dropped_unknown_tool": 0,
+  "dropped_minority": 3,
+  "repaired_write_scope": 0,
+  "emitted": 2,
+  "samples": 5,
+  "llm_calls": 25,
+  "cost_usd": 0.0,
+  "providers": [],
+  "details": [
+    {
+      "reason": "minority binding",
+      "predicate": "body_has_unnamed_url",
+      "tools": [
+        "send_email"
+      ]
+    },
+    {
+      "reason": "minority binding",
+      "predicate": "body_has_unnamed_url",
+      "tools": [
+        "send_email"
+      ]
+    },
+    {
+      "reason": "minority binding",
+      "predicate": "target_not_user_named",
+      "tools": [
+        "delete_file"
+      ]
+    }
+  ]
+}

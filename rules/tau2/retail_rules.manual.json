@@ -1,5 +1,6 @@
 {
   "domain": "retail",
+  "source_policy": "data/tau2/domains/retail/policy.md",
   "note": "Rules derived by hand from the retail agent policy; reference set for evaluating compiler-generated rules. Each entry cites the policy clause it enforces.",
   "rules": [
     {
@@ -121,6 +122,30 @@
       "predicate": "item_count_mismatch",
       "policy_clause": "Each item can be exchanged to an available new item of the same product but of different product option.",
       "reason": "Each item being changed needs exactly one replacement item. The two item lists have different lengths."
+    },
+    {
+      "id": "RET-FBD-08",
+      "type": "forbidden",
+      "tools": [
+        "return_delivered_order_items"
+      ],
+      "predicate": "refund_not_original_or_gift_card",
+      "policy_clause": "The refund must either go to the original payment method, or an existing gift card.",
+      "reason": "The refund for a return is being sent to a payment method that is neither the order's original payment method nor a gift card.",
+      "note": "Added 2026-09-14 after the write-only checker audit: RET-FBD-06 checks that the method is on the profile, which cannot express this clause."
+    },
+    {
+      "id": "RET-FBD-09",
+      "type": "forbidden",
+      "tools": [
+        "exchange_delivered_order_items",
+        "modify_pending_order_items"
+      ],
+      "predicate": "exchange_same_item",
+      "policy_clause": "Each item can be exchanged to an available new item of the same product but of different product option.",
+      "reason": "An item is being exchanged or modified to its own item id, i.e. to the same product option.",
+      "note": "Added 2026-09-14 after the write-only checker audit: RET-FBD-07 checks only that the item lists have equal length."
     }
-  ]
+  ],
+  "note_2026_09_14": "RET-FBD-08 and RET-FBD-09 added after the write-only checker audit (see paper/results/checker_write_classified.json); the nine original rules are unchanged."
 }
