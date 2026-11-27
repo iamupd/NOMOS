@@ -1,34 +1,40 @@
-# NOMOS Artifacts (v1.1)
+# NOMOS Artifacts (v1.2)
 
-Reproduction artifacts for the paper **"NOMOS: Compiling Written Policies into Statically Verified Tool-Call Gates for LLM Agents"** (Yu, Kim, and Choi).
+Reproduction artifacts for the paper **"NOMOS: Compiling Written Policies into Statically Checked Tool-Call Gates for LLM Agents"** (Yu, Kim, and Choi).
 
 This package lets a reader check the paper's numbers without the proprietary
 implementation. It contains the authored policies (both versions of the banking
 policy), every rule set the gate enforces in the reported experiments, the
-hand-written *independent* compliance checker used to measure violation rates,
+hand-written reference compliance checker used to measure violation rates,
 the compilation reports, representative gate block logs, the checker-audit and
 refusal-audit sheets, the run manifest and audit report that map every headline
-number to its run, aggregate results, and analysis scripts.
+number to its run, aggregate results, analysis scripts, and the outputs of the
+analyses added in the November 2026 revision.
 
 Version history: v1.0 (2026-08-27) accompanied an earlier draft and is
-superseded; v1.1 corresponds to the manuscript revised in October 2026. Use the
-concept DOI 10.5281/zenodo.22123419 to resolve the latest version.
+superseded; v1.1 corresponds to the manuscript revised in October 2026; v1.2
+corresponds to the manuscript resubmitted to IEEE Access in November 2026 and adds
+`revision_analyses/` (all v1.1 files are kept; changes are listed
+under "Changes in v1.2" below). Use the concept DOI 10.5281/zenodo.22123419 to resolve
+the latest version.
 
 ## What is *not* here (and why)
 
 The implementation is proprietary and is withheld: the compiler (including its
-LLM extraction prompt, the vocabulary's `Enable` and `Reads` tables and the
-AgentDojo port's predicate-generalization table), the
-behavioral preflight, and the runtime gate with its predicate evaluators. A
-reader can inspect every enforced rule (`rules/`, and Appendices A and C of the
-paper), the checks applied to it, and the block logs, but cannot re-run the
-compiler or reproduce the gate's decisions without the source. Raw simulation
+LLM extraction prompt), the behavioral preflight, and the runtime gate with its
+predicate evaluators and the word lists against which user turns are matched.
+What the predicates mean and the static tables the checks consult are specified
+in Supplementary Material S1 of the paper rather than in this package. A reader
+can inspect every enforced rule (`rules/`, and Appendices A and C of the paper),
+the checks applied to it, and the block logs, but cannot re-run the compiler or
+reproduce the gate's decisions without the source. Raw simulation
 transcripts are omitted for size and are available from the corresponding
 author on reasonable request.
 
 ## Layout
 
 ```
+revision_analyses/   Outputs of the analyses added in the November 2026 revision (see its README)
 policies/            Authored one-page security policies (banking, slack, travel, workspace);
                      banking.md is the evaluated (revised) version, banking_v1.md the first version
 rules/
@@ -38,7 +44,7 @@ rules/
                      sensitivity/ holds the other compiled sets of the compile-sensitivity
                      table (default vocabulary; extended vocabulary without the check)
   tau2/              Rule sets for tau2-bench (auto = compiled and enforced,
-                     manual = the independent checker: 16 airline and 11 retail rules,
+                     manual = the hand-written reference checker: 16 airline and 11 retail rules,
                      frontier = frontier-model compile)
   compile_reports/   Per-domain repair/reject counts (the basis for the static-verification table)
 logs/                Gate block logs (which tool call was refused by which rule)
@@ -56,7 +62,8 @@ rule was compiled from.
 
 `results/RUN_MANIFEST.md` maps every headline number in the paper to the exact
 canonical run it comes from, including the claims re-verified in the October
-2026 revision. `scripts/audit_recompute.py` recomputes the numbers from those
+2026 revision; numbers added in the November 2026 revision are mapped in its
+section "Revision analyses (v1.2)" to the files of `revision_analyses/`. `scripts/audit_recompute.py` recomputes the numbers from those
 runs and cross-checks each against the paper; its output is
 `results/AUDIT_REPORT.txt` (every value reproduces, `FAILS: none`). The script
 reads the raw simulation logs, which are not included here; the path constants
@@ -114,12 +121,14 @@ transcripts, counting calls to the tools the benchmark declares WRITE, yields
 ASR, benign-utility, and pass^k values, including the second-model rows
 (gemma-4-26B and Llama-3.3-70B). In `agentdojo_summary.csv`, condition `gate`
 is the compiled set for both models; `gate_compiled_*` rows are the other rule
-sets of the paper's compile-sensitivity table. `reportsets of the paper's compile-sensitivity table. `reported_asr_percent` is
+sets of the paper's compile-sensitivity table. `reported_asr_percent` is
 AgentDojo's security flag; `executed_asr_percent` counts only flagged pairs in
 which a malicious state-changing call actually ran (gated and compile-sensitivity
 rows). Injected calls that ran outside the flag (banking payments diverted to a
 payee already in the account's history, the Llama workspace deletions) are
-listed in `results/RUN_MANIFEST.md`.sults/checker_write_sample.json`, `checker_write_judged.json`,
+listed in `results/RUN_MANIFEST.md`.
+
+**Checker audit (paper Section IV).** `results/checker_write_sample.json`, `checker_write_judged.json`,
 `checker_write_judged_clauses.json` and `checker_write_classified.json` hold the
 write-only audit of the checker: 160 state-changing calls judged by an
 independent frontier model (Claude Sonnet 4.5) with untruncated context, raw
@@ -140,6 +149,19 @@ gate's confirmation consumption: no airline or retail binding reaches the 0.9
 flag line (worst 83.3% and 31.6%), and the pre-repair telecom rule is flagged at
 exactly the self-defeating binding (send_payment_request, 47/49 = 95.9%) while
 the same predicate's resume_line binding (0/44) is kept.
+
+**Analyses added in the revision.** See `revision_analyses/README.md`.
+
+## Changes in v1.2
+
+- Added `revision_analyses/`.
+- The hand-written checker is called the reference checker, as in the revised paper
+  (it shares the gate's vocabulary and evaluators; see the paper, Section IV).
+- The static tables are no longer listed as withheld; they are specified in
+  Supplementary Material S1 of the paper.
+- Paper title updated ("Statically Checked"); two garbled lines of the v1.1 README
+  repaired. No rule set, policy, log or v1.1 result file changed, except the
+  wording of three notes in `results/tau2_passk.csv` (and the script that writes them).
 
 ## Environment
 

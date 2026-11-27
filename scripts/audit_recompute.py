@@ -137,9 +137,9 @@ with open(os.path.join(OUT,"tau2_passk.csv"),"w",encoding="utf-8") as f:
     f.write(f"airline,frontier,1,{passk(au,1):.1f},{passk(af,1):.1f},{passk(af,1)-passk(au,1):.1f},,,\n")
     # Violation rate = reference-set violations / calls to WRITE-declared tools
     # (verified below in CHECKER VALIDITY); batch-reading values in the note.
-    f.write("airline,auto,violation_rate,66.3,2.6,,,,independent rule set; violations per WRITE call 234/353 -> 3/116; batch reading 36.8 -> 2.6\n")
-    f.write("retail,auto,violation_rate,30.8,6.9,,,,independent rule set (11 rules, RET-FBD-08/09 added 2026-09-14); violations per WRITE call 188/611 -> 40/582; batch reading 13.6 -> 5.3\n")
-    f.write("airline,auto_llama,violation_rate,86.9,7.1,,,,independent rule set; Llama-3.3-70B (5 trials, 2026-09-14); 359/413 -> 2/28; batch reading 80.9 -> 7.1\n")
+    f.write("airline,auto,violation_rate,66.3,2.6,,,,reference rule set; violations per WRITE call 234/353 -> 3/116; batch reading 36.8 -> 2.6\n")
+    f.write("retail,auto,violation_rate,30.8,6.9,,,,reference rule set (11 rules, RET-FBD-08/09 added 2026-09-14); violations per WRITE call 188/611 -> 40/582; batch reading 13.6 -> 5.3\n")
+    f.write("airline,auto_llama,violation_rate,86.9,7.1,,,,reference rule set; Llama-3.3-70B (5 trials, 2026-09-14); 359/413 -> 2/28; batch reading 80.9 -> 7.1\n")
 print("wrote tau2_passk.csv")
 
 # ============================================================================

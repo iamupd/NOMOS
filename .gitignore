@@ -9,4 +9,6 @@ pipeline_element.py
 transcripts/
 simulations/
 **/results.json
+# published analysis outputs (v1.2), not raw runs
+!revision_analyses/*/results.json
 *.env

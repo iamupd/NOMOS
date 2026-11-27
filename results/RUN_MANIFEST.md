@@ -155,3 +155,16 @@ call in every pair in which an attack executed under that set (15 slack, 3 trave
 | Same banking tasks as the NOMOS runs: Progent's fork given the benchmark's v1.2.2 banking (user task 6 update; injection-vector data aligned) | `code/progent-harness/nomos_harness.patch`, `added_files/`, `suite_parity.py` | parity dump of every banking task (prompt/goal, ground truth on the default environment, utility/security source hash), injection vectors and environment: 0 differences between the two forks |
 | Residuals: 12 of 16 Progent successes in user_task_10 (9) and user_task_0 (3); the other 4 in user_task_5 (3) and user_task_11 (1); NOMOS refuses all 37 attempts in these four tasks | Progent attack reps; `runs_fix/atk_v2_{1,2}` | audit_recompute.py |
 | Superseded | `C:/task/research/progent/runs_compare` (2026-08-29, Progent fork default banking version, one attack repetition: ASR 4.2%, benign 56.2%) | not used by the paper |
+
+## Revision analyses (v1.2, November 2026)
+
+Numbers added in the revision come from the analyses in `revision_analyses/`, which read the canonical runs listed
+above. Each JSON output records its inputs (run names and file digests) and the values quoted in the paper.
+
+| Paper quantity | Source |
+|---|---|
+| Table 10: airline task success split into the 24 tasks that need no write and the 26 that require one (gemma-4-26B and Llama-3.3-70B, k = 1 and 5); the no-write agent's score 46.0-48.0% | `revision_analyses/airline_split/results.json` (`split`, `passk`, `nowrite_agent`), runs `airline_base_k4`, `airline_gate_gemma_v2_k5`, `llama_airline_undef_B`, `llama_airline_gate_B` |
+| Table 14 exact 95% intervals; Section V-F confirmation consumption; Table 26 and the few-call bindings of Appendix E | `revision_analyses/preflight_intervals/results.json` (`bindings`, `cp_view_at_default`, `sensitivity`, `breakpoints_0.50_to_1.00`), replay over `airline_base_k4`, `retail_base_k4`, `telecom_base` |
+| Table 27 and Appendix E: seeded defects (polarity inversions, misbindings, dropped bindings) replayed through the preflight | `revision_analyses/preflight_seeding/results.json` (`summary`, `mutants`), inputs in `inputs_md5.txt` |
+| Zero-count upper bounds (two-sided 95% Clopper-Pearson) | `revision_analyses/zero_count_bounds/results.csv` |
+| Llama-3.3-70B banking records, unscored pairs and their treatment (Table 18, Section V-J) | `revision_analyses/llama_banking_pairs/results.json` |

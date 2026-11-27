@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use these artifacts, please cite the paper below."
-title: "NOMOS Artifacts: Reproduction package for statically verified policy gates for tool-using LLM agents"
-version: "v1.1"
+title: "NOMOS Artifacts: Reproduction package for statically checked policy gates for tool-using LLM agents"
+version: "v1.2"
 doi: "10.5281/zenodo.22123419"
 authors:
   - family-names: Yu
@@ -17,7 +17,7 @@ authors:
 license: CC-BY-NC-4.0
 preferred-citation:
   type: article
-  title: "NOMOS: Compiling Written Policies into Statically Verified Tool-Call Gates for LLM Agents"
+  title: "NOMOS: Compiling Written Policies into Statically Checked Tool-Call Gates for LLM Agents"
   authors:
     - family-names: Yu
       given-names: Min-Young
